@@ -27,12 +27,17 @@ PS C:\xampp\htdocs\APK Portfolio\backend> npm --version
 11.6.1
 
 1. Inisialisasi project
-npm init –y
+
+   npm init –y
 2. Install multer untuk upload foto profil
-npm install multer
+  
+   npm install multer
 3. Jalankan Server Di terminal VS Code:
-PS C:\xampp\htdocs\APK Portfolio\backend> node server.js
+
+   PS C:\xampp\htdocs\APK Portfolio\backend> node server.js
 
 *Jika menggunakan VS Code, install extension "Live Server"
+
 *Klik kanan pada file HTML -> "Open with Live Server"
+
 *Atau buka langsung file HTML di browser
