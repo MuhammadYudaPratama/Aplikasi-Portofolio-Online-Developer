@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub - Platform Kolaborasi Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="develop.css">
+</head>
+<body class="dark-mode">
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="beranda.html" class="logo">DevHub</a>
+                <ul class="nav-links">
+                    <li><a href="beranda.html">Home</a></li>
+                    <li><a href="develop.html" class="active">Developers</a></li>
+                    <li id="authSection">
+                        <!-- Auth buttons akan diisi oleh JavaScript -->
+                    </li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Dashboard Section (Visible only when logged in) -->
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1>Dashboard Developer</h1>
+                <p>Kelola profil dan proyek Anda di sini</p>
+            </div>
+
+            <div class="dashboard-tabs">
+                <button class="dashboard-tab active" data-tab="profile">Profil Saya</button>
+                <button class="dashboard-tab" data-tab="projects">Proyek Saya</button>
+                <button class="dashboard-tab" data-tab="preview">Pratinjau Profil</button>
+            </div>
+
+            <!-- Profile Content -->
+            <div class="dashboard-content active" id="profile-content">
+                <div class="profile-form">
+                    <!-- Foto Profil Section -->
+                    <div class="form-section">
+                        <h3>Foto Profil</h3>
+                        <div class="form-group">
+                            <label for="profilePicture">Upload Foto Profil</label>
+                            <div class="file-upload-container">
+                                <div class="profile-picture-preview" id="profilePicturePreview">
+                                    <img id="profilePreviewImg" src="" alt="Preview">
+                                    <div class="no-image" id="noImageText">
+                                        <i class="fas fa-user"></i>
+                                        <span>Belum ada foto</span>
+                                    </div>
+                                </div>
+                                <input type="file" id="profilePicture" class="file-input" accept="image/*">
+                                <div class="upload-buttons">
+                                    <button type="button" class="btn btn-outline" id="choosePictureBtn">
+                                        <i class="fas fa-camera"></i> Pilih Foto
+                                    </button>
+                                    <button type="button" class="btn btn-danger" id="removePictureBtn" style="display: none;">
+                                        <i class="fas fa-trash"></i> Hapus Foto
+                                    </button>
+                                </div>
+                            </div>
+                            <small class="form-text">Format: JPG, PNG, GIF (Maks. 5MB)</small>
+                        </div>
+                    </div>
+
+                    <!-- Informasi Pribadi -->
+                    <div class="form-section">
+                        <h3>Informasi Pribadi</h3>
+                        <div class="form-group">
+                            <label for="devName">Nama Lengkap</label>
+                            <input type="text" id="devName" class="form-control" placeholder="Masukkan nama lengkap Anda">
+                        </div>
+                        <div class="form-group">
+                            <label for="devTitle">Judul Profesi</label>
+                            <input type="text" id="devTitle" class="form-control" placeholder="Contoh: Full Stack Developer">
+                        </div>
+                        <div class="form-group">
+                            <label for="devBio">Bio/Deskripsi</label>
+                            <textarea id="devBio" class="form-control" rows="4" placeholder="Ceritakan tentang diri Anda dan keahlian Anda"></textarea>
+                        </div>
+                        <div class="form-group">
+                            <label for="devLocation">Lokasi</label>
+                            <input type="text" id="devLocation" class="form-control" placeholder="Kota, Negara">
+                        </div>
+                        <div class="form-group">
+                            <label for="devExperience">Pengalaman (tahun)</label>
+                            <input type="number" id="devExperience" class="form-control" min="0" max="50" placeholder="0">
+                        </div>
+                    </div>
+
+                    <!-- Keahlian Teknis -->
+                    <div class="form-section">
+                        <h3>Keahlian Teknis</h3>
+                        <div class="skills-input">
+                            <input type="text" id="skillInput" class="form-control" placeholder="Tambahkan keahlian (contoh: React, Python)">
+                            <button type="button" id="addSkill" class="btn btn-sm">Tambah</button>
+                        </div>
+                        <div class="skills-list" id="skillsContainer">
+                            <!-- Skills akan ditambahkan secara dinamis -->
+                        </div>
+                    </div>
+
+                    <!-- Informasi Kontak -->
+                    <div class="form-section">
+                        <h3>Informasi Kontak</h3>
+                        <div class="form-group">
+                            <label for="devEmail">Email</label>
+                            <input type="email" id="devEmail" class="form-control" placeholder="email@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="devPhone">Telepon</label>
+                            <input type="tel" id="devPhone" class="form-control" placeholder="+62 812 3456 7890">
+                        </div>
+                        <div class="form-group">
+                            <label for="devGithub">GitHub URL</label>
+                            <input type="url" id="devGithub" class="form-control" placeholder="https://github.com/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="devLinkedin">LinkedIn URL</label>
+                            <input type="url" id="devLinkedin" class="form-control" placeholder="https://linkedin.com/in/username">
+                        </div>
+                    </div>
+                    
+                    <button type="button" id="saveProfile" class="btn btn-success">
+                        <i class="fas fa-save"></i> Simpan Profil
+                    </button>
+                </div>
+            </div>
+
+            <!-- Projects Content -->
+            <div class="dashboard-content" id="projects-content">
+                <div class="project-form">
+                    <h3>Tambah Proyek Baru</h3>
+                    <div class="form-group">
+                        <label for="projectName">Nama Proyek</label>
+                        <input type="text" id="projectName" class="form-control" placeholder="Nama proyek Anda">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDescription">Deskripsi Proyek</label>
+                        <textarea id="projectDescription" class="form-control" rows="4" placeholder="Jelaskan tentang proyek Anda"></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="projectTechnologies">Teknologi yang Digunakan</label>
+                        <input type="text" id="projectTechnologies" class="form-control" placeholder="React, Node.js, MongoDB (pisahkan dengan koma)">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectDemo">URL Demo</label>
+                        <input type="url" id="projectDemo" class="form-control" placeholder="https://demo-project.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="projectCode">URL Kode Sumber</label>
+                        <input type="url" id="projectCode" class="form-control" placeholder="https://github.com/username/project">
+                    </div>
+                    <button type="button" id="addProject" class="btn">Tambah Proyek</button>
+                </div>
+
+                <div class="project-list" id="projectsContainer">
+                    <!-- Projects akan ditambahkan secara dinamis -->
+                </div>
+            </div>
+
+            <!-- Preview Content -->
+            <div class="dashboard-content" id="preview-content">
+                <div class="developer-card" id="profilePreview">
+                    <div class="developer-image">
+                        <img id="previewProfileImage" src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=400&h=300&q=80" alt="Preview Image">
+                    </div>
+                    <div class="developer-info">
+                        <h3 id="previewName">Nama Developer</h3>
+                        <div class="developer-title" id="previewTitle">Judul Profesi</div>
+                        <p id="previewBio">Deskripsi akan muncul di sini setelah Anda mengisi form profil.</p>
+                        <div class="developer-skills" id="previewSkills">
+                            <!-- Skills akan ditambahkan secara dinamis -->
+                        </div>
+                        <div class="developer-links">
+                            <a href="#" id="previewGithub"><i class="fab fa-github"></i></a>
+                            <a href="#" id="previewLinkedin"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Edit Project Modal -->
+    <div id="editProjectModal" class="auth-modal" style="display: none;">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Edit Project</h2>
+                <p>Edit informasi project Anda</p>
+            </div>
+            <div class="auth-form">
+                <form id="editProjectForm">
+                    <input type="hidden" id="editProjectId">
+                    <div class="form-group">
+                        <label for="editProjectName">Nama Project</label>
+                        <input type="text" id="editProjectName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProjectDescription">Deskripsi Project</label>
+                        <textarea id="editProjectDescription" class="form-control" rows="4" required></textarea>
+                    </div>
+                    <div class="form-group">
+                        <label for="editProjectTechnologies">Teknologi yang Digunakan</label>
+                        <input type="text" id="editProjectTechnologies" class="form-control" placeholder="React, Node.js, MongoDB (pisahkan dengan koma)">
+                    </div>
+                    <div class="form-group">
+                        <label for="editProjectDemo">URL Demo</label>
+                        <input type="url" id="editProjectDemo" class="form-control" placeholder="https://demo-project.com">
+                    </div>
+                    <div class="form-group">
+                        <label for="editProjectCode">URL Kode Sumber</label>
+                        <input type="url" id="editProjectCode" class="form-control" placeholder="https://github.com/username/project">
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Simpan Perubahan</button>
+                        <button type="button" class="btn btn-outline" id="cancelEdit">Batal</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <script src="develop.js"></script>
+</body>
+</html>

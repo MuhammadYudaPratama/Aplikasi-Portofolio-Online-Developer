@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DevHub - Temukan Developer Terbaik</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="beranda.css">
+</head>
+<body class="dark-mode">
+    <!-- Header & Navigation -->
+    <header id="header">
+        <div class="container">
+            <nav>
+                <a href="index.html" class="logo">DevHub</a>
+                <ul class="nav-links">
+                    <li><a href="#home" class="nav-link active">Home</a></li>
+                    <li><a href="#developers" class="nav-link">Developers</a></li>
+                    <li><a href="#all-developers" class="nav-link">Semua Developer</a></li>
+                    <li><a href="#contact" class="nav-link">Kontak</a></li>
+                    <li id="authSection">
+                        <!-- Auth buttons will be inserted here by JavaScript -->
+                    </li>
+                    <li>
+                        <button class="theme-toggle" id="themeToggle">
+                            <i class="fas fa-sun"></i>
+                        </button>
+                    </li>
+                </ul>
+                <div class="mobile-menu" id="mobileMenu">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Auth Modal -->
+    <div id="authModal" class="auth-modal">
+        <div class="auth-container">
+            <div class="auth-header">
+                <h2>Selamat Datang</h2>
+                <p>Masuk atau daftar untuk mengelola profil developer Anda</p>
+            </div>
+            <div class="auth-tabs">
+                <button class="auth-tab active" data-tab="login">Masuk</button>
+                <button class="auth-tab" data-tab="register">Daftar</button>
+            </div>
+            <div class="auth-form">
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="loginEmail">Email</label>
+                        <input type="email" id="loginEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="loginPassword">Password</label>
+                        <input type="password" id="loginPassword" class="form-control" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Masuk</button>
+                        <a href="#" id="forgotPassword">Lupa password?</a>
+                    </div>
+                </form>
+                <form id="registerForm" style="display: none;">
+                    <div class="form-group">
+                        <label for="registerName">Nama Lengkap</label>
+                        <input type="text" id="registerName" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerEmail">Email</label>
+                        <input type="email" id="registerEmail" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerPassword">Password</label>
+                        <input type="password" id="registerPassword" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="registerConfirmPassword">Konfirmasi Password</label>
+                        <input type="password" id="registerConfirmPassword" class="form-control" required>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Daftar</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- Home Section -->
+    <section id="home" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1>Temukan <span>Developer</span> Terbaik</h1>
+                    <p>DevHub adalah platform untuk menemukan talenta developer terbaik dengan berbagai keahlian dan pengalaman. Jelajahi portofolio mereka dan temukan developer yang tepat untuk proyek Anda.</p>
+                    <div class="hero-buttons">
+                        <a href="#all-developers" class="btn smooth-scroll">Jelajahi Semua Developer</a>
+                        <a href="#" id="joinAsDeveloper" class="btn btn-outline">Bergabung sebagai Developer</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Developers Section -->
+    <section id="developers">
+        <div class="container">
+            <div class="section-title">
+                <h2>Developer Terpilih</h2>
+                <p>Beberapa developer terbaik dari berbagai keahlian</p>
+            </div>
+            
+            <div class="developers-grid" id="developersGrid">
+                <!-- Developers will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- All Developers Page -->
+    <section id="all-developers" class="all-developers">
+        <div class="container">
+            <div class="page-header">
+                <h1>Semua Developer</h1>
+                <p>Temukan developer terbaik sesuai dengan kebutuhan proyek Anda. Filter berdasarkan keahlian, pengalaman, atau teknologi.</p>
+            </div>
+
+            <div class="developer-stats">
+                <div class="stat-item">
+                    <div class="stat-number" id="totalDevelopers">0</div>
+                    <div class="stat-label">Total Developer</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="availableDevelopers">0</div>
+                    <div class="stat-label">Tersedia untuk Proyek</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalProjects">0</div>
+                    <div class="stat-label">Proyek Selesai</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number" id="totalTechnologies">0</div>
+                    <div class="stat-label">Teknologi Berbeda</div>
+                </div>
+            </div>
+
+            <div class="filter-section">
+                <div class="filter-categories">
+                    <button class="filter-btn active" data-category="all">Semua</button>
+                    <button class="filter-btn" data-category="fullstack">Full Stack</button>
+                    <button class="filter-btn" data-category="frontend">Frontend</button>
+                    <button class="filter-btn" data-category="backend">Backend</button>
+                    <button class="filter-btn" data-category="mobile">Mobile</button>
+                    <button class="filter-btn" data-category="devops">DevOps</button>
+                    <button class="filter-btn" data-category="uiux">UI/UX</button>
+                </div>
+                
+                <div class="search-box">
+                    <input type="text" id="developerSearch" placeholder="Cari developer berdasarkan nama atau keahlian...">
+                    <i class="fas fa-search"></i>
+                </div>
+            </div>
+            
+            <div class="developers-grid" id="allDevelopersGrid">
+                <!-- All developers will be loaded here dynamically -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <div class="section-title">
+                <h2>Kontak Kami</h2>
+                <p>Hubungi kami untuk informasi lebih lanjut</p>
+            </div>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Lokasi</h4>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Email</h4>
+                            <p>hello@devhub.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <div class="contact-icon">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <div class="contact-text">
+                            <h4>Telepon</h4>
+                            <p>+62 812 3456 7890</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Kirim Pesan</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="logo">DevHub</div>
+                <div class="social-links">
+                    <a href="#"><i class="fab fa-github"></i></a>
+                    <a href="#"><i class="fab fa-linkedin"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+            <div class="copyright">
+                <p>&copy; 2025 DevHub. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Developer Detail Modal -->
+    <div id="developerDetailModal" class="developer-detail" style="display: none;">
+        <div class="container">
+            <a href="#" class="back-button" id="backButton">
+                <i class="fas fa-arrow-left"></i> Kembali ke Daftar Developer
+            </a>
+            <div class="developer-detail-content">
+                <div class="developer-detail-image">
+                    <img id="detailImage" src="" alt="Developer Detail">
+                </div>
+                <div class="developer-detail-info">
+                    <h1 id="detailName">Nama Developer</h1>
+                    <div class="developer-detail-title" id="detailTitle">Full Stack Developer</div>
+                    <p id="detailDescription">Deskripsi developer akan ditampilkan di sini.</p>
+                    
+                    <div class="developer-meta">
+                        <div class="meta-item">
+                            <span class="meta-label">Pengalaman</span>
+                            <span class="meta-value" id="detailExperience">5+ Tahun</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Lokasi</span>
+                            <span class="meta-value" id="detailLocation">Jakarta, Indonesia</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Email</span>
+                            <span class="meta-value" id="detailEmail">developer@example.com</span>
+                        </div>
+                        <div class="meta-item">
+                            <span class="meta-label">Telepon</span>
+                            <span class="meta-value" id="detailPhone">+62 812 3456 7890</span>
+                        </div>
+                    </div>
+                    
+                    <div class="developer-skills-detail">
+                        <h3>Keahlian</h3>
+                        <div class="developer-skills" id="detailSkills">
+                            <!-- Skills will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="developer-projects">
+                        <h3>Proyek Terbaru</h3>
+                        <div class="projects-list" id="detailProjects">
+                            <!-- Projects will be added dynamically -->
+                        </div>
+                    </div>
+                    
+                    <div class="developer-links">
+                        <a href="#" class="btn" id="detailGithub"><i class="fab fa-github"></i> GitHub</a>
+                        <a href="#" class="btn btn-outline" id="detailLinkedin"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="beranda.js"></script>
+</body>
+</html>
