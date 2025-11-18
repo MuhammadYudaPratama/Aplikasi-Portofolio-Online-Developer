@@ -26,11 +26,11 @@ v24.11.0
 PS C:\xampp\htdocs\APK Portfolio\backend> npm --version     
 11.6.1
 
-#Inisialisasi project
+1. Inisialisasi project
 npm init –y
-#Install multer untuk upload foto profil
+2. Install multer untuk upload foto profil
 npm install multer
-#Jalankan Server Di terminal VS Code:
+3. Jalankan Server Di terminal VS Code:
 PS C:\xampp\htdocs\APK Portfolio\backend> node server.js
 
 *Jika menggunakan VS Code, install extension "Live Server"
